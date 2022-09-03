@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-Wall -g
 
-all: clean
+all: clean client.c server.c
 	$(CC) $(CFLAGS) -o client.o client.c
 	$(CC) $(CFLAGS) -o server.o server.c
 
