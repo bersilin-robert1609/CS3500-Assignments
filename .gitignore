@@ -1,2 +1,1 @@
-./LAB-3/client.o 
-./LAB-3/server.o
+.*/*.o 
