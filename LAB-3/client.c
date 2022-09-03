@@ -43,7 +43,7 @@ int main()
             perror("Error in receiving message from S2C queue");
             return 1;
         }
-        else printf("%s", result.mtext);
+        else printf("%s\n", result.mtext);
 
         if(strncmp(msg.mtext, "End", 3) == 0) break;
     }
