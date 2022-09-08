@@ -10,10 +10,15 @@ typedef struct message {
     char mtext[BUFSIZE];
 } message;
 
+typedef struct result {
+    long int mtype;
+    ssize_t mtext;
+} result;
+
 int main()
 {
-    int C2S = msgget((key_t) 69695, 0666 | IPC_CREAT);
-    int S2C = msgget((key_t) 96965, 0666 | IPC_CREAT);
+    int C2S = msgget((key_t) 69696, 0666 | IPC_CREAT);
+    int S2C = msgget((key_t) 96966, 0666 | IPC_CREAT);
     if(C2S == -1)
     {
         perror("Error in C2S creation");
@@ -37,13 +42,13 @@ int main()
             return 1;
         }
 
-        message result;
-        if(msgrcv(S2C, (void*)&result, BUFSIZE, 1, 0) == -1)
+        result rslt;
+        if(msgrcv(S2C, (void*)&rslt, BUFSIZE, 1, 0) == -1)
         {
             perror("Error in receiving message from S2C queue");
             return 1;
         }
-        else printf("%s\n", result.mtext);
+        else printf("%ld\n", rslt.mtext);
 
         if(strncmp(msg.mtext, "End", 3) == 0) break;
     }
