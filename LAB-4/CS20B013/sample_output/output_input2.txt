@@ -1,0 +1,9 @@
+Output Sequence / Execution Sequence: 
+Idle p1 p2 p1 p3 p2 p4 Idle p5 
+Quantum: 4
+Number of processes: 5
+PID: p1 AT: 1 CT: 10 TAT: 9 WT: 4 Type: ip
+PID: p2 AT: 3 CT: 14 TAT: 11 WT: 5 Type: sys
+PID: p3 AT: 7 CT: 12 TAT: 5 WT: 3 Type: iep
+PID: p4 AT: 14 CT: 21 TAT: 7 WT: 0 Type: bp
+PID: p5 AT: 40 CT: 45 TAT: 5 WT: 0 Type: ip

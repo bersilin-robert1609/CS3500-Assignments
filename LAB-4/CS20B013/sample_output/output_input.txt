@@ -1,0 +1,27 @@
+Output Sequence / Execution Sequence: 
+p1 p2 p8 p3 p6 p9 p17 p5 p20 p7 
+p8 p14 p6 p11 p17 p4 p10 p7 p13 p14 
+p15 p4 p16 p18 p12 p15 p16 p18 p15 p19 
+
+Quantum: 3
+Number of processes: 20
+PID: p1 AT: 0 CT: 3 TAT: 3 WT: 0 Type: sys
+PID: p2 AT: 0 CT: 5 TAT: 5 WT: 3 Type: ip
+PID: p3 AT: 0 CT: 8 TAT: 8 WT: 6 Type: iep
+PID: p4 AT: 0 CT: 37 TAT: 37 WT: 34 Type: bp
+PID: p5 AT: 0 CT: 13 TAT: 13 WT: 12 Type: sp
+PID: p6 AT: 1 CT: 22 TAT: 21 WT: 19 Type: iep
+PID: p7 AT: 2 CT: 31 TAT: 29 WT: 25 Type: sys
+PID: p8 AT: 2 CT: 20 TAT: 18 WT: 15 Type: ip
+PID: p9 AT: 3 CT: 11 TAT: 8 WT: 6 Type: bp
+PID: p10 AT: 3 CT: 30 TAT: 27 WT: 24 Type: sp
+PID: p11 AT: 3 CT: 24 TAT: 21 WT: 19 Type: iep
+PID: p12 AT: 4 CT: 45 TAT: 41 WT: 38 Type: sys
+PID: p13 AT: 4 CT: 33 TAT: 29 WT: 27 Type: sys
+PID: p14 AT: 5 CT: 35 TAT: 30 WT: 27 Type: ip
+PID: p15 AT: 6 CT: 52 TAT: 46 WT: 41 Type: ip
+PID: p16 AT: 6 CT: 49 TAT: 43 WT: 40 Type: bp
+PID: p17 AT: 6 CT: 25 TAT: 19 WT: 17 Type: bp
+PID: p18 AT: 7 CT: 51 TAT: 44 WT: 39 Type: sp
+PID: p19 AT: 9 CT: 54 TAT: 45 WT: 43 Type: ip
+PID: p20 AT: 10 CT: 15 TAT: 5 WT: 3 Type: sp
