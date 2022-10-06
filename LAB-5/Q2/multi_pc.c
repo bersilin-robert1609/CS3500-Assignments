@@ -26,17 +26,12 @@ void get_arguments(int argc, char** argv)
         printf("Usage: ./multi_pc -p <p> -c <c> -pc <pc> -cc <cc>");
         exit(1);
     }
-
     for(int i = 1; i < argc; i++)
     {
-        if(strcmp(argv[i], "-p") == 0)
-            p = atoi(argv[i+1]);
-        else if(strcmp(argv[i], "-pc") == 0)
-            pc = atoi(argv[i+1]);
-        else if(strcmp(argv[i], "-c") == 0)
-            c = atoi(argv[i+1]);
-        else if(strcmp(argv[i], "-cc") == 0)
-            cc = atoi(argv[i+1]);
+        if(strcmp(argv[i], "-p") == 0) p = atoi(argv[i+1]);
+        else if(strcmp(argv[i], "-pc") == 0) pc = atoi(argv[i+1]);
+        else if(strcmp(argv[i], "-c") == 0) c = atoi(argv[i+1]);
+        else if(strcmp(argv[i], "-cc") == 0) cc = atoi(argv[i+1]);
     }
     return;
 }
@@ -48,18 +43,16 @@ void* producer(void* arg)
     int count = pc;
     while(count > 0)
     {
-        // wait for empty
+        // wait for mutexes
         sem_wait(&empty);
-        // wait for mutex
         sem_wait(&mutex);
         // produce an item
         int item_code = rand() % 1000;
         stack[current_size++] = item_code;
-        printf("Producer %d produced an item %d\n", id, item_code);
+        printf("Producer %d produced %d\n", id+1, item_code);
         count--;
-        // signal mutex
+        // signal mutexes
         sem_post(&mutex);
-        // signal full
         sem_post(&full);
     }
     return NULL;
@@ -72,20 +65,17 @@ void* consumer(void* arg)
     int count = cc;
     while(count > 0)
     {
-        // wait for full
+        // wait for mutexes
         sem_wait(&full);
-        // wait for mutex
         sem_wait(&mutex);
         // consume an item
         int item_code = stack[--current_size];
-        printf("Consumer %d consumed an item %d\n", id, item_code);
+        printf("Consumer %d consumed %d\n", id+1, item_code);
         count--;
-        // signal mutex
+        // signal mutexes
         sem_post(&mutex);
-        // signal empty
         sem_post(&empty);
     }
-
     return NULL;
 }
 
@@ -113,19 +103,12 @@ int main(int argc, char** argv)
     for(int i = 0; i < p; i++) producer_ids[i] = i;
     for(int i = 0; i < c; i++) consumer_ids[i] = i;
 
-    // Create the producer threads
-    for(int i = 0; i < p; i++)
-        pthread_create(&producers[i], NULL, producer, &producer_ids[i]);
-    // Create the consumer threads
-    for(int i = 0; i < c; i++)
-        pthread_create(&consumers[i], NULL, consumer, &consumer_ids[i]);
+    // Create the producer and consumer threads
+    for(int i = 0; i < c; i++) pthread_create(&consumers[i], NULL, consumer, &consumer_ids[i]);
+    for(int i = 0; i < p; i++) pthread_create(&producers[i], NULL, producer, &producer_ids[i]);
 
-    // Join the producer threads
-    for(int i = 0; i < p; i++)
-        pthread_join(producers[i], NULL);
-    // Join the consumer threads
-    for(int i = 0; i < c; i++)
-        pthread_join(consumers[i], NULL);
-    
+    // Join the producer and consumer threads
+    for(int i = 0; i < p; i++) pthread_join(producers[i], NULL);
+    for(int i = 0; i < c; i++) pthread_join(consumers[i], NULL);
     return 0;
 }

@@ -1,0 +1,18 @@
+
+| ----------------------------------------------------------------------------------------------- |
+Q - 2.2 (REPORT)
+
+Question: Suppose if you start the consumer threads, but put all producer threads to sleep for (say)
+5 seconds, then will the output of your program change?
+
+Answer: No, the output will not change.
+
+The semaphores are resource indicators. They make sure that the consumers wait until the producers 
+have produced some items. And in general cases if the buffer gets full, the producers will wait 
+until the consumers consume some items. So, the output will not change. So even if the producers
+are put to sleep, the consumers will wait until the producers produce some items.
+
+This is taken care by the sem_wait() and sem_post() functions. Only when the producer posts full 
+semaphore, the consumer will consume the item.
+
+| ----------------------------------------------------------------------------------------------- |

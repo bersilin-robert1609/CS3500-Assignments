@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS=-Wall -g
+CFLAGS=-Wall -g -lpthread -lrt
 
-all: clean
+all: clean multi_pc.c
 	$(CC) $(CFLAGS) -o multi_pc multi_pc.c
 
 clean:
