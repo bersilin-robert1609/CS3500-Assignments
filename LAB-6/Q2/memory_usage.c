@@ -4,6 +4,8 @@
 #include <sys/resource.h>
 
 long** matrix[5];
+struct rusage const_usage;
+long const_mem;
 
 void matrix_transpose(long** matrix, long m, long n)
 {
@@ -18,7 +20,33 @@ void matrix_transpose(long** matrix, long m, long n)
     }
 }
 
-long main()
+void create_matrices(int n)
+{
+    for (int i = 0; i < 5; i++)
+    {
+        matrix[i] = (long**)malloc(n * sizeof(long*));
+        for (int j = 0; j < n; j++)
+        {
+            matrix[i][j] = (long*)malloc(n * sizeof(long));
+            for (int k = 0; k < n; k++)
+            {
+                matrix[i][j][k] = rand();
+            }
+        }
+    }
+}
+
+void process(int n)
+{
+    struct rusage usage;
+    getrusage(RUSAGE_SELF, &usage);
+    long mem = usage.ru_maxrss;
+    printf("memory_usage: %ld + %ld, ", const_mem, mem - const_mem);
+    for(int i=0; i<5; i++) matrix_transpose(matrix[i], n, n);
+    printf("page_faults: %lu\n", usage.ru_minflt);
+}
+
+int main()
 {
     srand(0);
     long n;
@@ -30,66 +58,25 @@ long main()
     long choice;
     scanf("%ld", &choice);
 
-    struct rusage const_usage;
     getrusage(RUSAGE_SELF, &const_usage);
-    long const_mem = const_usage.ru_maxrss;
+    const_mem = const_usage.ru_maxrss;
 
     if(choice == 1)
     {
-        for(long i=0; i<5; i++) matrix[i] = (long **)malloc(n * sizeof(long *));
-        for(long mat_index = 0; mat_index < 5; mat_index++)
-        {
-            for (long j = 0; j < n; j++)
-            {
-                matrix[mat_index][j] = (long *)malloc(n * sizeof(long));
-            }
-        }
-        for(long mat_index = 0; mat_index < 5; mat_index++)
-        {
-            for(long i = 0; i < n; i++)
-            {
-                for(long j = 0; j < n; j++)
-                {
-                    matrix[mat_index][i][j] = rand() % 100;
-                }
-            }
-        }
-        for(long i=0; i<10; i++)
-        {
-            struct rusage usage;
-            getrusage(RUSAGE_SELF, &usage);
-            long mem = usage.ru_maxrss;
-            printf("memory usage: %ld + %ld, ", const_mem, mem - const_mem);
-            for(int i=0; i<5; i++) matrix_transpose(matrix[i], n, n);
-            printf("page faults: %lu\n", usage.ru_minflt);
-        }
+        create_matrices(n);
+        for(long i=0; i<10; i++) process(n);
     }
     else if(choice == 2)
     {
         for (long i = 0; i < 10; i++)
         {
-            long **matrix = (long **)malloc(n * sizeof(long *));
-            for (long i = 0; i < n; i++)
-            {
-                matrix[i] = (long *)malloc(n * sizeof(long));
-            }
-            struct rusage usage;
-            getrusage(RUSAGE_SELF, &usage);
-            long mem = usage.ru_maxrss;
-            printf("memory usage: %d + %d, ", const_mem, mem - const_mem);
-            for(long i=0; i<n; i++)
-            {
-                for(long j=0; j<n; j++)
-                {
-                    matrix[i][j] = rand();
-                }
-            }
-            matrix_transpose(matrix, n, n);
-            printf("page faults: %lu\n", usage.ru_minflt);
+            create_matrices(n);
+            process(n);
         }
     }
     else
     {
         printf("Invalid Choice\n");
     }
+    return 0;
 }

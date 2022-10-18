@@ -59,7 +59,7 @@ void take_memory_input()
 
 void take_process_input()
 {
-    cout << "Enter Number of processes: ";
+    cout << "Enter Number of Process: ";
     cin >> noOfProcesses;
     cout << "Enter "<< noOfProcesses <<" Process Sizes: ";
     for (int i = 0; i < noOfProcesses; i++)
@@ -97,7 +97,7 @@ void print_memory_allocation()
         cout << i + 1 << "\t\t" << processSizes[i] << "\t\t";
         if (processAllocation[i].first != -1)
         {
-            cout << processAllocation[i].second << "\t" << processAllocation[i].first + 1 << endl;
+            cout << processAllocation[i].second << "\t\t" << processAllocation[i].first + 1 << endl;
         }
         else
         {
