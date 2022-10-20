@@ -1,10 +1,15 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <climits>
+#include <algorithm>
+#include <assert.h>
 
 using namespace std;
 
 #define CYLINDER_COUNT 5000
 #define REQUEST_COUNT 1000
 #define DEFAULT_HEAD 2000
+#define lsint long unsigned int
 
 /*
  * Algorithm Code
@@ -171,7 +176,7 @@ void set_scan_service_order()
     vector<int> lt_head;
     vector<int> mt_head;
 
-    for(int i=0; i<requests.size(); i++)
+    for(lsint i=0; i<requests.size(); i++)
     {
         if(requests[i] < head_pos) lt_head.push_back(requests[i]);
         else mt_head.push_back(requests[i]);
@@ -184,39 +189,39 @@ void set_scan_service_order()
 
     if(lt_head.size() == 0)
     {
-        for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+        for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
     }
     else if(mt_head.size() == 0)
     {
-        for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+        for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
     }
     else
     {
         if(mt_head[0] - head_pos < head_pos - lt_head[0])
         {
-            for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+            for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
             if(service_order[service_order.size() - 1] != CYLINDER_COUNT-1)
             {
                 service_order.push_back(CYLINDER_COUNT - 1);
                 newCount++;
             }
-            for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+            for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
         }
         else
         {
-            for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+            for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
             if(service_order[service_order.size() - 1] != 0)
             {
                 service_order.push_back(0);
                 newCount++;
             }
-            for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+            for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
         }
     }
 
-    assert(service_order.size() == REQUEST_COUNT + newCount);
+    assert((int)service_order.size() == REQUEST_COUNT + newCount);
 
-    for(int i=0; i<service_order.size(); i++)
+    for(lsint i=0; i<service_order.size(); i++)
     {
         head_movement += abs(service_order[i] - head_pos);
         head_pos = service_order[i];
@@ -241,17 +246,17 @@ void set_cscan_service_order()
     int newCount = 0;
     if(lt_head.size() == 0)
     {
-        for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+        for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
     }
     else if(mt_head.size() == 0)
     {
-        for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+        for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
     }
     else
     {
         if(mt_head[0] - head_pos < head_pos - lt_head[lt_head.size()-1])
         {
-            for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+            for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
             if(service_order[service_order.size() - 1] != CYLINDER_COUNT-1)
             {
                 service_order.push_back(CYLINDER_COUNT - 1);
@@ -262,14 +267,14 @@ void set_cscan_service_order()
                 service_order.push_back(0);
                 newCount++;
             }
-            for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+            for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
         }
         else
         {
             reverse(mt_head.begin(), mt_head.end());
             reverse(lt_head.begin(), lt_head.end());
 
-            for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+            for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
             if(service_order[service_order.size() - 1] != 0)
             {
                 service_order.push_back(0);
@@ -280,13 +285,13 @@ void set_cscan_service_order()
                 service_order.push_back(CYLINDER_COUNT - 1);
                 newCount++;
             }
-            for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+            for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
         }
     }
 
-    assert(service_order.size() == REQUEST_COUNT + newCount);
+    assert((int)service_order.size() == REQUEST_COUNT + newCount);
 
-    for(int i=0; i<service_order.size(); i++)
+    for(lsint i=0; i<service_order.size(); i++)
     {
         head_movement += abs(service_order[i] - head_pos);
         head_pos = service_order[i];
@@ -310,29 +315,29 @@ void set_look_service_order()
 
     if(lt_head.size() == 0)
     {
-        for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+        for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
     }
     else if(mt_head.size() == 0)
     {
-        for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+        for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
     }
     else
     {
         if(mt_head[0] - head_pos < head_pos - lt_head[0])
         {
-            for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
-            for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+            for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+            for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
         }
         else
         {
-            for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
-            for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+            for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+            for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
         }
     }
 
-    assert(service_order.size() == REQUEST_COUNT);
+    assert((int)service_order.size() == REQUEST_COUNT);
 
-    for(int i=0; i<service_order.size(); i++)
+    for(lsint i=0; i<service_order.size(); i++)
     {
         head_movement += abs(service_order[i] - head_pos);
         head_pos = service_order[i];
@@ -356,32 +361,32 @@ void set_clook_service_order()
 
     if(lt_head.size() == 0)
     {
-        for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+        for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
     }
     else if(mt_head.size() == 0)
     {
-        for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+        for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
     }
     else
     {
         if(mt_head[0] - head_pos < head_pos - lt_head[lt_head.size()-1])
         {
-            for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
-            for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+            for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+            for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
         }
         else
         {
             reverse(mt_head.begin(), mt_head.end());
             reverse(lt_head.begin(), lt_head.end());
 
-            for(int i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
-            for(int i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
+            for(lsint i=0; i<lt_head.size(); i++) service_order.push_back(lt_head[i]);
+            for(lsint i=0; i<mt_head.size(); i++) service_order.push_back(mt_head[i]);
         }
     }
 
     assert(service_order.size() == REQUEST_COUNT);
 
-    for(int i=0; i<service_order.size(); i++)
+    for(lsint i=0; i<service_order.size(); i++)
     {
         head_movement += abs(service_order[i] - head_pos);
         head_pos = service_order[i];
@@ -400,7 +405,7 @@ void display_outputs()
         }
         cerr<<endl;
         cerr<<"The service order is "<<endl;
-        for(int i = 0; i<service_order.size(); i++)
+        for(lsint i = 0; i<service_order.size(); i++)
         {
             cerr<<service_order[i]<<" ";
         }
