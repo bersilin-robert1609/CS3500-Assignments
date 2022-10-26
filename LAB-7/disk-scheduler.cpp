@@ -3,6 +3,7 @@
 #include <climits>
 #include <algorithm>
 #include <assert.h>
+#include <string.h>
 
 using namespace std;
 
@@ -21,12 +22,13 @@ using namespace std;
  * C-LOOK - 6
  */
 
-int head_pos;
-int algorithm;
+int head_pos = DEFAULT_HEAD;
+int algorithm = 1;
 vector<int> requests;
 vector<int> service_order;
 int head_movement;
 bool debug = false;
+bool justAvgValue = true;
 
 void manage_inputs(int, char**);
 void generate_requests(int);
@@ -50,29 +52,58 @@ int main(int argc, char** argv)
 
 void manage_inputs(int argc, char** argv)
 {
-    switch(argc)
+    // -h argument for head 
+    // -a for algorithm
+    // -d for debug
+
+    // error case
+    if(argc != 1 && argc != 3 && argc != 5)
+    {   
+        cerr << "Invalid number of arguments" << endl;
+        cout << endl;
+        cout << "Usage: ./disk-scheduler -h <head position> -a <algorithm>" << endl;
+        cout << endl;
+        cout << "Optional Arguments:" << endl;
+        cout << "Usage: ./disk-scheduler <arguments>" << endl;
+        cout << endl;
+        cout << "Arguments: " << endl;
+        cout << "-h for <head position>" << endl;
+        cout << "Limits for head position: 0 - 4999" << endl;
+        cout << endl;
+        cout << "-a for <algorithm>" << endl;
+        cout << "Algorithm: " << endl;
+        cout << "1 - FCFS" << endl;
+        cout << "2 - SSTF" << endl;
+        cout << "3 - SCAN" << endl;
+        cout << "4 - C-SCAN" << endl;
+        cout << "5 - LOOK" << endl;
+        cout << "6 - C-LOOK" << endl;
+        cout << endl;
+        cout << "Default head position: " << DEFAULT_HEAD << endl;
+        cout << "Default algorithm: FCFS" << endl;
+        exit(1);
+    }
+
+    for(int i = 1; i < argc; i++)
     {
-        case 3:
+        if(strcmp(argv[i], "-h") == 0)
         {
-            head_pos = atoi(argv[1]);
-            if(head_pos >= CYLINDER_COUNT)
+            head_pos = atoi(argv[i+1]);
+            if(head_pos < 0 || head_pos > CYLINDER_COUNT)
             {
-                cerr<<"INVALID HEAD POSITION"<<endl;
-                exit(0);
+                cerr << "Invalid head position" << endl;
+                exit(1);
             }
-            algorithm = atoi(argv[2]);
-            break;
+            i++;
         }
-        case 2:
+        else if(strcmp(argv[i], "-a") == 0)
         {
-            head_pos = DEFAULT_HEAD;
-            algorithm = stoi(argv[1]);
-            break;
+            algorithm = atoi(argv[i+1]);
+            i++;
         }
-        default:
+        else if(strcmp(argv[i], "-d") == 0)
         {
-            cerr<<"The usage is ./<binary> <head position> <algorithm> or ./<binary> <algorithm>"<<endl;
-            exit(0);
+            debug = true;
         }
     }
     return;
@@ -90,11 +121,13 @@ void generate_requests(int request_count)
 
 void scheduler_run()
 {
+    if (!justAvgValue) cout << "Given Head Position: " << head_pos << endl;
     switch(algorithm)
     {
         case 1:
         {
             // FCFS Algorithm
+            if(!justAvgValue) cout << "Algorithm: FCFS" << endl;
             service_order.resize(REQUEST_COUNT);
             for(int i=0; i<REQUEST_COUNT; i++)
             {
@@ -107,6 +140,7 @@ void scheduler_run()
         case 2:
         {
             // SSTF Algorithm
+            if(!justAvgValue) cout << "Algorithm: SSTF" << endl;
             service_order.resize(REQUEST_COUNT);
             set_sstf_service_order();
             break;
@@ -114,24 +148,28 @@ void scheduler_run()
         case 3:
         {
             // SCAN Algorithm
+            if(!justAvgValue) cout << "Algorithm: SCAN" << endl;
             set_scan_service_order();
             break;
         }
         case 4:
         {
             // C-SCAN Algorithm
+            if(!justAvgValue) cout << "Algorithm: C-SCAN" << endl;
             set_cscan_service_order();
             break;
         }
         case 5:
         {
             // LOOK Algorithm
+            if(!justAvgValue) cout << "Algorithm: LOOK" << endl;
             set_look_service_order();
             break;
         }
         case 6:
         {
             // C-LOOK Algorithm
+            if(!justAvgValue) cout << "Algorithm: C-LOOK" << endl;
             set_clook_service_order();
             break;
         }
@@ -411,8 +449,12 @@ void display_outputs()
         }
         cerr<<endl;
     }
-    cerr<<service_order.size()<<endl;
-    cerr<<"The average head movement is " << head_movement / (double)REQUEST_COUNT <<endl;
-    cerr<<"The total head movement is " << head_movement << endl;
+
+    if(justAvgValue) cout<<head_movement / (double)REQUEST_COUNT<<endl;
+    else
+    {
+        cout<<"The average head movement is " << head_movement / (double)REQUEST_COUNT <<endl;
+        cout<<"The total head movement is " << head_movement << endl;
+    }
     return;
 }
