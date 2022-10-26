@@ -1,0 +1,325 @@
+
+Given Head Position: 500
+Algorithm: FCFS
+The average head movement is 1643.87
+The total head movement is 1643872
+Service order printed to output_service_order.txt
+
+Given Head Position: 1000
+Algorithm: FCFS
+The average head movement is 1643.37
+The total head movement is 1643372
+Service order printed to output_service_order.txt
+
+Given Head Position: 1500
+Algorithm: FCFS
+The average head movement is 1642.87
+The total head movement is 1642872
+Service order printed to output_service_order.txt
+
+Given Head Position: 2000
+Algorithm: FCFS
+The average head movement is 1642.37
+The total head movement is 1642372
+Service order printed to output_service_order.txt
+
+Given Head Position: 2500
+Algorithm: FCFS
+The average head movement is 1641.87
+The total head movement is 1641872
+Service order printed to output_service_order.txt
+
+Given Head Position: 3000
+Algorithm: FCFS
+The average head movement is 1641.37
+The total head movement is 1641372
+Service order printed to output_service_order.txt
+
+Given Head Position: 3500
+Algorithm: FCFS
+The average head movement is 1640.87
+The total head movement is 1640872
+Service order printed to output_service_order.txt
+
+Given Head Position: 4000
+Algorithm: FCFS
+The average head movement is 1640.37
+The total head movement is 1640372
+Service order printed to output_service_order.txt
+
+Given Head Position: 4500
+Algorithm: FCFS
+The average head movement is 1639.87
+The total head movement is 1639872
+Service order printed to output_service_order.txt
+
+Given Head Position: 500
+Algorithm: SSTF
+The average head movement is 9.491
+The total head movement is 9491
+Service order printed to output_service_order.txt
+
+Given Head Position: 1000
+Algorithm: SSTF
+The average head movement is 8.991
+The total head movement is 8991
+Service order printed to output_service_order.txt
+
+Given Head Position: 1500
+Algorithm: SSTF
+The average head movement is 8.491
+The total head movement is 8491
+Service order printed to output_service_order.txt
+
+Given Head Position: 2000
+Algorithm: SSTF
+The average head movement is 7.991
+The total head movement is 7991
+Service order printed to output_service_order.txt
+
+Given Head Position: 2500
+Algorithm: SSTF
+The average head movement is 7.505
+The total head movement is 7505
+Service order printed to output_service_order.txt
+
+Given Head Position: 3000
+Algorithm: SSTF
+The average head movement is 7.994
+The total head movement is 7994
+Service order printed to output_service_order.txt
+
+Given Head Position: 3500
+Algorithm: SSTF
+The average head movement is 8.52
+The total head movement is 8520
+Service order printed to output_service_order.txt
+
+Given Head Position: 4000
+Algorithm: SSTF
+The average head movement is 6.003
+The total head movement is 6003
+Service order printed to output_service_order.txt
+
+Given Head Position: 4500
+Algorithm: SSTF
+The average head movement is 9.504
+The total head movement is 9504
+Service order printed to output_service_order.txt
+
+Given Head Position: 500
+Algorithm: SCAN
+The average head movement is 9.497
+The total head movement is 9497
+Service order printed to output_service_order.txt
+
+Given Head Position: 1000
+Algorithm: SCAN
+The average head movement is 8.997
+The total head movement is 8997
+Service order printed to output_service_order.txt
+
+Given Head Position: 1500
+Algorithm: SCAN
+The average head movement is 8.497
+The total head movement is 8497
+Service order printed to output_service_order.txt
+
+Given Head Position: 2000
+Algorithm: SCAN
+The average head movement is 7.997
+The total head movement is 7997
+Service order printed to output_service_order.txt
+
+Given Head Position: 2500
+Algorithm: SCAN
+The average head movement is 7.497
+The total head movement is 7497
+Service order printed to output_service_order.txt
+
+Given Head Position: 3000
+Algorithm: SCAN
+The average head movement is 7.996
+The total head movement is 7996
+Service order printed to output_service_order.txt
+
+Given Head Position: 3500
+Algorithm: SCAN
+The average head movement is 8.496
+The total head movement is 8496
+Service order printed to output_service_order.txt
+
+Given Head Position: 4000
+Algorithm: SCAN
+The average head movement is 8.996
+The total head movement is 8996
+Service order printed to output_service_order.txt
+
+Given Head Position: 4500
+Algorithm: SCAN
+The average head movement is 9.496
+The total head movement is 9496
+Service order printed to output_service_order.txt
+
+Given Head Position: 500
+Algorithm: C-SCAN
+The average head movement is 9.987
+The total head movement is 9987
+Service order printed to output_service_order.txt
+
+Given Head Position: 1000
+Algorithm: C-SCAN
+The average head movement is 9.975
+The total head movement is 9975
+Service order printed to output_service_order.txt
+
+Given Head Position: 1500
+Algorithm: C-SCAN
+The average head movement is 9.981
+The total head movement is 9981
+Service order printed to output_service_order.txt
+
+Given Head Position: 2000
+Algorithm: C-SCAN
+The average head movement is 9.985
+The total head movement is 9985
+Service order printed to output_service_order.txt
+
+Given Head Position: 2500
+Algorithm: C-SCAN
+The average head movement is 9.994
+The total head movement is 9994
+Service order printed to output_service_order.txt
+
+Given Head Position: 3000
+Algorithm: C-SCAN
+The average head movement is 9.994
+The total head movement is 9994
+Service order printed to output_service_order.txt
+
+Given Head Position: 3500
+Algorithm: C-SCAN
+The average head movement is 9.995
+The total head movement is 9995
+Service order printed to output_service_order.txt
+
+Given Head Position: 4000
+Algorithm: C-SCAN
+The average head movement is 9.996
+The total head movement is 9996
+Service order printed to output_service_order.txt
+
+Given Head Position: 4500
+Algorithm: C-SCAN
+The average head movement is 9.996
+The total head movement is 9996
+Service order printed to output_service_order.txt
+
+Given Head Position: 500
+Algorithm: LOOK
+The average head movement is 9.491
+The total head movement is 9491
+Service order printed to output_service_order.txt
+
+Given Head Position: 1000
+Algorithm: LOOK
+The average head movement is 8.991
+The total head movement is 8991
+Service order printed to output_service_order.txt
+
+Given Head Position: 1500
+Algorithm: LOOK
+The average head movement is 8.491
+The total head movement is 8491
+Service order printed to output_service_order.txt
+
+Given Head Position: 2000
+Algorithm: LOOK
+The average head movement is 7.991
+The total head movement is 7991
+Service order printed to output_service_order.txt
+
+Given Head Position: 2500
+Algorithm: LOOK
+The average head movement is 7.491
+The total head movement is 7491
+Service order printed to output_service_order.txt
+
+Given Head Position: 3000
+Algorithm: LOOK
+The average head movement is 7.994
+The total head movement is 7994
+Service order printed to output_service_order.txt
+
+Given Head Position: 3500
+Algorithm: LOOK
+The average head movement is 8.494
+The total head movement is 8494
+Service order printed to output_service_order.txt
+
+Given Head Position: 4000
+Algorithm: LOOK
+The average head movement is 8.994
+The total head movement is 8994
+Service order printed to output_service_order.txt
+
+Given Head Position: 4500
+Algorithm: LOOK
+The average head movement is 9.494
+The total head movement is 9494
+Service order printed to output_service_order.txt
+
+Given Head Position: 500
+Algorithm: C-LOOK
+The average head movement is 9.979
+The total head movement is 9979
+Service order printed to output_service_order.txt
+
+Given Head Position: 1000
+Algorithm: C-LOOK
+The average head movement is 9.967
+The total head movement is 9967
+Service order printed to output_service_order.txt
+
+Given Head Position: 1500
+Algorithm: C-LOOK
+The average head movement is 9.973
+The total head movement is 9973
+Service order printed to output_service_order.txt
+
+Given Head Position: 2000
+Algorithm: C-LOOK
+The average head movement is 9.977
+The total head movement is 9977
+Service order printed to output_service_order.txt
+
+Given Head Position: 2500
+Algorithm: C-LOOK
+The average head movement is 9.986
+The total head movement is 9986
+Service order printed to output_service_order.txt
+
+Given Head Position: 3000
+Algorithm: C-LOOK
+The average head movement is 9.986
+The total head movement is 9986
+Service order printed to output_service_order.txt
+
+Given Head Position: 3500
+Algorithm: C-LOOK
+The average head movement is 9.987
+The total head movement is 9987
+Service order printed to output_service_order.txt
+
+Given Head Position: 4000
+Algorithm: C-LOOK
+The average head movement is 9.988
+The total head movement is 9988
+Service order printed to output_service_order.txt
+
+Given Head Position: 4500
+Algorithm: C-LOOK
+The average head movement is 9.988
+The total head movement is 9988
+Service order printed to output_service_order.txt
+

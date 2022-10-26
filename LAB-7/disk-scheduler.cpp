@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <assert.h>
 #include <string.h>
+#include <fstream>
 
 using namespace std;
 
@@ -28,7 +29,7 @@ vector<int> requests;
 vector<int> service_order;
 int head_movement;
 bool debug = false;
-bool justAvgValue = true;
+bool justAvgValue = false;
 
 void manage_inputs(int, char**);
 void generate_requests(int);
@@ -450,11 +451,20 @@ void display_outputs()
         cerr<<endl;
     }
 
+    // Write service order to file
+    ofstream fout;
+    fout.open("output_service_order.txt");
+    for(lsint i = 0; i<service_order.size(); i++)
+    {
+        fout<<service_order[i]<<endl;
+    }
+
     if(justAvgValue) cout<<head_movement / (double)REQUEST_COUNT<<endl;
     else
     {
         cout<<"The average head movement is " << head_movement / (double)REQUEST_COUNT <<endl;
         cout<<"The total head movement is " << head_movement << endl;
+        cout<<"Service order printed to output_service_order.txt"<<endl;
     }
     return;
 }
